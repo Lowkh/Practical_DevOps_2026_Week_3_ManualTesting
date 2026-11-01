@@ -27,7 +27,7 @@ The focus is on selecting meaningful tests, recording accurate observations, and
 | Tools | Web browser, text editor, Git, GitHub, and screenshot tool |
 | Websites | SauceDemo and Test Pages |
 | Collaboration | Shared repository, individual branches, commits, and pull requests |
-| Output | A shared repository containing the team plan, guided test results, self-designed tests, evidence, reflections, and contribution history |
+| Output | Team plan, test results, self-designed tests, evidence, reflections, and contribution history |
 
 > [!NOTE]
 > ## Educational Practice Repository
@@ -77,11 +77,23 @@ Git updates and collaboration are included in the activity times.
 
 ## 3. Websites Used
 
-| Website | Purpose |
-|---|---|
-| [SauceDemo](https://www.saucedemo.com/) | Positive and negative login testing |
-| [Test Pages validation form](https://testpages.eviltester.com/apps/client-server-form-validation/) | Equivalence partitioning and boundary testing |
-| [Test Pages validation instructions](https://testpages.eviltester.com/apps/client-server-form-validation/client-server-form-validation-instructions/) | Checking published validation requirements |
+### SauceDemo
+
+[https://www.saucedemo.com/](https://www.saucedemo.com/)
+
+Use this website for positive, negative, and recovery login scenarios.
+
+### Test Pages Validation Form
+
+[https://testpages.eviltester.com/apps/client-server-form-validation/](https://testpages.eviltester.com/apps/client-server-form-validation/)
+
+Use this website for equivalence partitioning and boundary testing.
+
+### Test Pages Validation Instructions
+
+[https://testpages.eviltester.com/apps/client-server-form-validation/client-server-form-validation-instructions/](https://testpages.eviltester.com/apps/client-server-form-validation/client-server-form-validation-instructions/)
+
+Read this page to check the form’s current validation requirements.
 
 ***
 
@@ -105,37 +117,55 @@ Use your identifier in branch names, filenames, evidence folders, and test recor
 
 ### 4.2 Assign Coordination Responsibilities
 
-| Responsibility | Five-member team | Four-member team |
-|---|---|---|
-| Coordinate timing and task allocation | Member A | Member A |
-| Check requirements and baseline data | Member B | Member B |
-| Check guided testing coverage | Member C | Member C |
-| Check evidence organisation | Member D | Member D |
-| Coordinate repository integration and summary | Member E | Shared by A and D |
+#### Member A — Team Coordination
 
-These are coordination responsibilities, not exclusive jobs.
+- Keep track of time.
+- Help the team follow the activity sequence.
+- Confirm that every member has an assigned task.
 
-Every member must still:
+#### Member B — Requirements and Baseline
 
-- Execute assigned tests.
-- Record their own results.
-- Design additional tests.
-- Commit and push their own work.
-- Complete an individual reflection.
+- Check the published requirements.
+- Record the agreed baseline data.
+- Highlight unclear or changed requirements.
 
-The repository coordinator must not commit everyone else’s work on their behalf.
+#### Member C — Guided Test Coverage
+
+- Check that all required guided test values are covered.
+- Identify missing or unexecuted cases.
+
+#### Member D — Evidence Organisation
+
+- Help the team use consistent evidence filenames.
+- Check that screenshots contain no sensitive information.
+- Check that evidence links work.
+
+#### Member E — Repository Integration
+
+- Coordinate pull-request merging.
+- Maintain the team summary.
+
+For a four-member team, Members A and D share the repository integration responsibility.
+
+> [!NOTE]
+> These are coordination responsibilities, not exclusive jobs.
+>
+> Every member must test, record results, design additional tests, commit their own work, and complete a reflection.
+>
+> The repository coordinator must not commit everyone else’s work on their behalf.
 
 ### 4.3 Agree on How to Work Together
 
 Before testing, agree on:
 
-1. The repository and branch naming convention.
-2. The shared baseline data.
-3. Where each member will record results.
-4. How the team will communicate progress.
-5. Who will coordinate merging pull requests.
+1. The shared repository.
+2. The branch naming convention.
+3. The baseline data.
+4. Where each member will record results.
+5. How the team will communicate progress.
+6. Who will coordinate merging pull requests.
 
-Members may discuss ideas and help one another. However, each member must identify their own executions and contributions.
+Members may discuss ideas and help one another. Each person must still identify their own executions and contributions.
 
 ***
 
@@ -203,12 +233,37 @@ The question is:
 
 ### 5.4 Test Type Is Different from Test Status
 
-| Test type | Input | Expected behaviour | Actual behaviour | Status |
-|---|---|---|---|---|
-| Positive | Valid credentials | Allow login | Login allowed | Pass |
-| Positive | Valid credentials | Allow login | Login rejected | Fail |
-| Negative | Incorrect password | Reject login | Login rejected | Pass |
-| Negative | Incorrect password | Reject login | Login allowed | Fail |
+#### Positive Test Example
+
+```text
+Input:
+Valid credentials.
+
+Expected:
+Login succeeds.
+
+If login succeeds:
+Pass.
+
+If login is rejected:
+Fail.
+```
+
+#### Negative Test Example
+
+```text
+Input:
+Incorrect password.
+
+Expected:
+Login is rejected.
+
+If login is rejected:
+Pass.
+
+If login succeeds:
+Fail.
+```
 
 > [!TIP]
 > A negative test passes when the application handles invalid input correctly.
@@ -217,11 +272,17 @@ The question is:
 
 ### 5.5 Techniques for Selecting Test Data
 
-| Technique | Purpose |
-|---|---|
-| Equivalence partitioning | Divide inputs into groups expected to receive similar treatment and select representatives |
-| 2-point boundary testing | Select adjacent values on opposite sides of each boundary transition |
-| 3-point boundary testing | Select identified boundary values and their immediate neighbours |
+#### Equivalence Partitioning
+
+Divide inputs into groups expected to receive similar treatment. Select representative values from those groups.
+
+#### 2-Point Boundary Testing
+
+Select adjacent values on opposite sides of each boundary transition.
+
+#### 3-Point Boundary Testing
+
+Select identified boundary values and their immediate neighbours.
 
 These techniques help you choose test data. A selected case is positive or negative according to whether its input is valid.
 
@@ -286,7 +347,7 @@ The initial member files may contain only a heading.
 | Location | Purpose |
 |---|---|
 | `team-plan.md` | Members, responsibilities, baseline data, and task allocation |
-| `summary.md` | Links to completed work and a short team summary |
+| `summary.md` | Links to completed work and a short team conclusion |
 | `results/` | Guided test cases and results |
 | `exploratory/` | Self-designed tests and observations |
 | `reflections/` | Individual reflections |
@@ -298,7 +359,7 @@ The coordinator commits and pushes the starting structure before members begin t
 
 ### 6.3 Complete the Team Plan
 
-In `team-plan.md`, record:
+Add the following structure to `team-plan.md`:
 
 ```markdown
 # Team Plan
@@ -307,13 +368,25 @@ In `team-plan.md`, record:
 
 ## Members
 
-| Identifier | GitHub username | Coordination responsibility |
-|---|---|---|
-| member-a | | |
-| member-b | | |
-| member-c | | |
-| member-d | | |
-| member-e, if applicable | | |
+### Member A
+- GitHub username:
+- Coordination responsibility:
+
+### Member B
+- GitHub username:
+- Coordination responsibility:
+
+### Member C
+- GitHub username:
+- Coordination responsibility:
+
+### Member D
+- GitHub username:
+- Coordination responsibility:
+
+### Member E — If Applicable
+- GitHub username:
+- Coordination responsibility:
 
 ## Guided Test Allocation
 
@@ -324,7 +397,9 @@ In `team-plan.md`, record:
 ## Repository Integration Arrangements
 ```
 
-Each member should primarily edit their own files. The coordinator maintains the shared plan and summary.
+Each member should primarily edit their own files.
+
+The coordinator maintains the shared plan and summary.
 
 ### 6.4 Clone the Repository
 
@@ -406,17 +481,75 @@ In your file under `manual-testing/results/`, add:
 
 Replace Member A’s details with your own identifier.
 
-### 7.2 Use Consistent Test Records
+### 7.2 Use a Separate Record for Each Test
 
-Use a table such as:
+Do not place long steps and results in a wide table.
+
+Use a test-case block with:
+
+- A short details table.
+- Preconditions.
+- Test data.
+- Numbered steps.
+- Expected result.
+- Actual result.
+- Evidence.
+
+Copy this template for each test:
 
 ```markdown
-| Test ID | Type | Test data | Expected result | Actual result | Status | Evidence |
-|---|---|---|---|---|---|---|
-| | | | | | Not run | |
+### Test ID: YOUR-TEST-ID
+
+| Item | Details |
+|---|---|
+| Test type | Positive / Negative / Recovery |
+| Tester | Your member identifier |
+| Website | Website name |
+| Status | Not run |
+
+#### Purpose
+
+What does this test check?
+
+#### Preconditions
+
+What must be true before the test starts?
+
+#### Test Data
+
+| Field | Value |
+|---|---|
+| Input name | Input value |
+
+#### Steps
+
+1.
+2.
+3.
+
+#### Expected Result
+
+Write this before executing the test.
+
+#### Actual Result
+
+Not recorded — test has not been executed.
+
+#### Evidence
+
+Not captured.
+
+---
 ```
 
-For longer scenarios, write the numbered steps above the results table.
+After executing the test:
+
+1. Replace the actual-result placeholder with your observation.
+2. Update the status.
+3. Add relevant evidence.
+4. Save, commit, and push the changes.
+
+### 7.3 Use Consistent Statuses
 
 | Status | Meaning |
 |---|---|
@@ -425,61 +558,90 @@ For longer scenarios, write the numbered steps above the results table.
 | Blocked | Another issue prevents completion |
 | Not run | The test has not been executed |
 
-Avoid vague actual results such as “works” or “does not work.” Describe the page, message, or behaviour observed.
+For an exploratory observation without a clear expected result, explain the uncertainty rather than forcing a Pass or Fail. You may label it `Observation only`.
 
-### 7.3 Save Evidence in Your Own Folder
+Avoid vague descriptions such as:
+
+```text
+Works.
+```
+
+Instead, record:
+
+```text
+After selecting Login, the inventory page appeared and
+the product list was visible.
+```
+
+### 7.4 Save Evidence in Your Own Folder
 
 Example:
 
 ```text
-manual-testing/evidence/member-a/login-n01.png
+manual-testing/evidence/member-a/login-p01.png
 ```
 
 From `results/member-a.md`, link using:
 
 ```markdown
-[View screenshot](../evidence/member-a/login-n01.png)
+[View screenshot](../evidence/member-a/login-p01.png)
 ```
 
-Capture useful evidence, particularly for unexpected behaviour. A screenshot is not required for every passing test.
+Capture useful evidence, particularly for unexpected behaviour.
+
+A screenshot is not required for every passing test. Written actual results are still required.
 
 Do not capture sensitive information or unrelated personal browser content.
 
-### 7.4 Use This Git Workflow at Each Checkpoint
+### 7.5 Use This Git Workflow at Every Checkpoint
 
-Save your files, then:
+Run commands from the repository root.
+
+#### Step 1 — Save and Review
 
 ```bash
 git status
 git diff
 ```
 
-Review new files and screenshots directly. Normal `git diff` does not display untracked files or the visual contents of screenshots.
+Review new files and screenshots directly.
 
-Stage only your intended files. For example:
+Normal `git diff` does not display untracked files or the visual contents of screenshots.
+
+#### Step 2 — Stage Your Intended Files
+
+Example for Member A:
 
 ```bash
 git add manual-testing/results/member-a.md
 ```
 
-If you added screenshots, stage your evidence folder as well:
+If you added screenshots:
 
 ```bash
 git add manual-testing/evidence/member-a/
 ```
 
-Review the staged changes:
+When you edit your exploratory or reflection files, stage those paths as well.
+
+#### Step 3 — Review the Staged Changes
 
 ```bash
 git diff --cached
 git status
 ```
 
-Commit with a meaningful message:
+Confirm that only your intended work is staged.
+
+#### Step 4 — Commit
 
 ```bash
-git commit -m "Prepare member A testing record"
+git commit -m "Prepare individual testing record"
 ```
+
+Use a message that accurately describes the changes.
+
+#### Step 5 — Push
 
 For the first push:
 
@@ -493,14 +655,21 @@ For subsequent pushes:
 git push
 ```
 
-Other members substitute their own paths and branch names.
+Other members substitute their own branch names.
 
-Open GitHub and verify that your latest commit and files appear on your branch.
+#### Step 6 — Verify on GitHub
+
+Open your branch and check that:
+
+1. The latest commit appears.
+2. The expected files are present.
+3. Markdown displays correctly.
+4. Evidence links work.
 
 > [!WARNING]
 > A local commit does not upload your work to GitHub.
 >
-> Push your commits and verify them online. If a push is rejected, read the message and consult your Tutor if needed. Do not force push.
+> Push and verify your work online. If a push is rejected, read the message and consult your Tutor if needed. Do not force push.
 
 ### Git Checkpoint — Preparation
 
@@ -518,7 +687,9 @@ Prepare individual testing record
 
 Time: 20 minutes
 
-Open [SauceDemo](https://www.saucedemo.com/).
+Open:
+
+[https://www.saucedemo.com/](https://www.saucedemo.com/)
 
 Demonstration credentials:
 
@@ -538,62 +709,155 @@ For this exercise:
 
 ### 8.2 Allocate Tests
 
-| Member | Assigned scenario |
-|---|---|
-| A | LOGIN-P01: Valid credentials |
-| B | LOGIN-N01: Incorrect password |
-| C | LOGIN-N02: Missing password |
-| D | LOGIN-N03: Missing username |
-| E | LOGIN-R01: Recovery after invalid login |
+| Member | Test ID | Scenario |
+|---|---|---|
+| A | LOGIN-P01 | Valid credentials |
+| B | LOGIN-N01 | Incorrect password |
+| C | LOGIN-N02 | Missing password |
+| D | LOGIN-N03 | Missing username |
+| E | LOGIN-R01 | Correct an invalid attempt |
 
 For four members, Member A also performs LOGIN-R01.
 
-### 8.3 Execute the Assigned Login Test
+### 8.3 Shared Starting Procedure
 
-1. Start from the logged-out login page.
-2. Clear both fields.
-3. Enter the assigned data.
-4. Write the expected result before selecting `Login`.
-5. Select `Login`.
-6. Observe the page and feedback.
-7. Record the actual result.
-8. Assign a status.
+Before each independent test:
 
-| ID | Type | Username | Password | Expected result |
-|---|---|---|---|---|
-| LOGIN-P01 | Positive | `standard_user` | `secret_sauce` | Inventory appears |
-| LOGIN-N01 | Negative | `standard_user` | `wrong_password` | Login rejected with feedback |
-| LOGIN-N02 | Negative | `standard_user` | Empty | Login rejected with feedback |
-| LOGIN-N03 | Negative | Empty | `secret_sauce` | Login rejected with feedback |
+1. Open the login page.
+2. Log out if already logged in.
+3. Clear both input fields.
+4. Confirm that you are starting from the logged-out state.
 
-For the positive case, confirm that products are visible.
+Do not reset between the two attempts within the recovery scenario.
 
-For negative cases:
+### 8.4 LOGIN-P01 — Valid Credentials
 
-- Confirm that the inventory is not reached.
-- Copy relevant feedback accurately.
-- Mark the test Pass if rejection matches the expected result.
+Test type: Positive.
 
-### 8.4 Execute the Recovery Scenario
+#### Test Data
 
-For LOGIN-R01:
+| Field | Value |
+|---|---|
+| Username | `standard_user` |
+| Password | `secret_sauce` |
 
-1. Enter `standard_user` and `wrong_password`.
-2. Select `Login`.
-3. Confirm rejection.
-4. Replace the password with `secret_sauce`.
-5. Select `Login` again.
-6. Check whether the inventory appears.
-7. Record both stages.
+#### Steps
 
-Expected result:
+1. Follow the shared starting procedure.
+2. Enter the username.
+3. Enter the password.
+4. Select `Login`.
+5. Observe the page reached.
+6. Check that products are visible.
 
-```text
-The invalid attempt is rejected.
-The corrected attempt succeeds.
-```
+#### Expected Result
 
-### 8.5 Discuss as a Team
+The inventory page appears and products are visible.
+
+#### Record Your Result
+
+In your own test record:
+
+- Describe the actual page reached.
+- Record whether products were visible.
+- Assign a status.
+- Add relevant evidence.
+
+### 8.5 LOGIN-N01 — Incorrect Password
+
+Test type: Negative.
+
+#### Test Data
+
+| Field | Value |
+|---|---|
+| Username | `standard_user` |
+| Password | `wrong_password` |
+
+#### Steps
+
+1. Follow the shared starting procedure.
+2. Enter the valid username.
+3. Enter the incorrect password.
+4. Select `Login`.
+5. Observe the page and feedback.
+
+#### Expected Result
+
+Login is rejected, error feedback appears, and the inventory is not reached.
+
+Keep the username valid to isolate the incorrect-password condition.
+
+If rejection occurs as expected, mark the test Pass.
+
+### 8.6 LOGIN-N02 — Missing Password
+
+Test type: Negative.
+
+#### Test Data
+
+| Field | Value |
+|---|---|
+| Username | `standard_user` |
+| Password | Empty |
+
+#### Steps
+
+1. Follow the shared starting procedure.
+2. Enter the username.
+3. Leave the password empty.
+4. Select `Login`.
+5. Observe the feedback.
+
+#### Expected Result
+
+The attempt is rejected with validation feedback. The inventory is not reached.
+
+### 8.7 LOGIN-N03 — Missing Username
+
+Test type: Negative.
+
+#### Test Data
+
+| Field | Value |
+|---|---|
+| Username | Empty |
+| Password | `secret_sauce` |
+
+#### Steps
+
+1. Follow the shared starting procedure.
+2. Leave the username empty.
+3. Enter the password.
+4. Select `Login`.
+5. Observe the feedback.
+
+#### Expected Result
+
+The attempt is rejected with validation feedback. The inventory is not reached.
+
+### 8.8 LOGIN-R01 — Recovery After an Invalid Attempt
+
+Test type: Recovery.
+
+#### Steps
+
+1. Follow the shared starting procedure.
+2. Enter `standard_user` and `wrong_password`.
+3. Select `Login`.
+4. Confirm rejection.
+5. Replace the password with `secret_sauce`.
+6. Keep the username unchanged.
+7. Select `Login` again.
+8. Check whether the inventory appears.
+
+#### Expected Result
+
+The invalid attempt is rejected. After correcting the password, login succeeds.
+
+Record both stages in the actual result.
+
+### 8.9 Discuss as a Team
 
 Each member briefly explains:
 
@@ -618,11 +882,11 @@ Record assigned login testing results
 
 Time: 20 minutes
 
-Open the [validation form](https://testpages.eviltester.com/apps/client-server-form-validation/) and its [instructions](https://testpages.eviltester.com/apps/client-server-form-validation/client-server-form-validation-instructions/).
+Open the validation form and its instructions.
 
 ### 9.1 Step 1 — Read the Requirements
 
-Check the current instructions.
+Check the current website instructions.
 
 The requirements used in this practical include:
 
@@ -644,7 +908,9 @@ Age is a whole number from 18 to 80 inclusive.
 18 ≤ age ≤ 80
 ```
 
-The whole-number restriction defines the classroom model. If decimal behaviour is unspecified, record a requirement question.
+The whole-number restriction defines the classroom model.
+
+If decimal behaviour is unspecified, record a requirement question rather than inventing an expected result.
 
 ### 9.2 Step 2 — Establish a Valid Baseline
 
@@ -664,20 +930,30 @@ If it does not:
 
 1. Recheck the values.
 2. Read the current requirements.
-3. Resolve the issue with your team or Tutor before continuing.
+3. Resolve the issue with your team or Tutor before proceeding.
+
+Record the baseline in `team-plan.md`.
 
 > [!IMPORTANT]
 > When testing age, keep every other field valid and unchanged.
 >
-> Otherwise, a rejection caused by another field could be mistaken for an age-validation result.
+> Otherwise, rejection caused by another field could be mistaken for an age-validation result.
 
-### 9.3 Step 3 — Identify the Partitions
+### 9.3 Step 3 — Identify Numeric Partitions
 
-| Partition | Whole-number age group | Representative | Type | Expected result |
-|---|---|---:|---|---|
-| EP-01 | Below 18 | 10 | Negative | Reject |
-| EP-02 | 18–80 inclusive | 30 | Positive | Accept |
-| EP-03 | Above 80 | 90 | Negative | Reject |
+| Partition | Whole-number age group | Representative |
+|---|---|---:|
+| EP-01 | Below 18 | 10 |
+| EP-02 | 18–80 inclusive | 30 |
+| EP-03 | Above 80 | 90 |
+
+Classify the selected values:
+
+| Representative | Test type | Expected result |
+|---:|---|---|
+| 10 | Negative | Reject |
+| 30 | Positive | Accept |
+| 90 | Negative | Reject |
 
 ```text
        Negative                 Positive                 Negative
@@ -688,38 +964,54 @@ If it does not:
 
 ### 9.4 Step 4 — Allocate Tests
 
-| Member | Assigned task |
+| Member | Task |
 |---|---|
-| A | Age 30: valid numeric partition |
-| B | Age 10: below-range partition |
-| C | Age 90: above-range partition |
+| A | Test age 30 |
+| B | Test age 10 |
+| C | Test age 90 |
 | D | Observe blank age handling |
 | E | Observe non-numeric input handling using `abc` |
 
 For four members, Member D performs both input-format observations.
 
-### 9.5 Step 5 — Execute and Record
+### 9.5 Step 5 — Execute Numeric Tests
 
-For numeric cases:
+For each assigned numeric case:
 
 1. Restore the form.
 2. Enter the valid baseline.
 3. Change only age.
-4. Record the expected result.
+4. Write the expected result.
 5. Submit.
 6. Observe acceptance or rejection.
 7. Where displayed, verify the submitted age.
-8. Record the actual result and status.
+8. Record the actual result and status in a separate test-case block.
 
-For input-format observations, record:
+Suggested test IDs:
+
+```text
+AGE-EP-30-A
+AGE-EP-10-B
+AGE-EP-90-C
+```
+
+For this practical:
+
+- Accept means the form successfully submits with the intended age.
+- Reject means successful submission is prevented or a validation error is returned for that age.
+
+### 9.6 Step 6 — Observe Input-Format Handling
+
+For blank age and `abc`, record:
 
 - Whether the input can be entered.
 - Whether it is prevented, cleared, or rejected.
 - What feedback appears.
+- Whether the requirement clearly defines the expected behaviour.
+
+These observations are separate from the three numeric partitions.
 
 Do not claim that the server rejected input that the browser prevented from being entered.
-
-If the expected behaviour is unclear, record a requirement question rather than inventing a rule.
 
 ### Discussion Checkpoint
 
@@ -750,7 +1042,7 @@ Time: 20 minutes
 
 ### 10.2 Step 2 — Select Adjacent Values
 
-Select the values on opposite sides of each transition:
+Select values on opposite sides of each transition:
 
 ```text
 17, 18, 80, 81
@@ -758,15 +1050,22 @@ Select the values on opposite sides of each transition:
 
 ### 10.3 Step 3 — Allocate Tests
 
-| Member | Age | Type | Expected result |
-|---|---:|---|---|
-| A | 17 | Negative | Reject |
-| B | 18 | Positive | Accept |
-| C | 80 | Positive | Accept |
-| D | 81 | Negative | Reject |
-| E | Independently repeat 18 and 81 | Positive and negative | Accept 18; reject 81 |
+| Member | Assigned age |
+|---|---|
+| A | 17 |
+| B | 18 |
+| C | 80 |
+| D | 81 |
+| E | Independently repeat 18 and 81 |
 
 For four members, omit the additional independent repetitions.
+
+| Age | Test type | Expected result |
+|---:|---|---|
+| 17 | Negative | Reject |
+| 18 | Positive | Accept |
+| 80 | Positive | Accept |
+| 81 | Negative | Reject |
 
 ### 10.4 Step 4 — Execute and Record
 
@@ -781,7 +1080,7 @@ Each assigned tester:
 7. Records relevant feedback.
 8. Assigns a status.
 
-Use IDs such as:
+Use separate records with IDs such as:
 
 ```text
 AGE-2P-17-A
@@ -792,9 +1091,61 @@ AGE-2P-81-D
 
 The final letter identifies the tester.
 
-### 10.5 Step 5 — Interpret the Results
+### 10.5 Example Boundary Test Record
 
-Consider:
+```markdown
+### Test ID: AGE-2P-17-A
+
+| Item | Details |
+|---|---|
+| Test type | Negative |
+| Tester | member-a |
+| Website | Test Pages validation form |
+| Technique | 2-point boundary testing |
+| Status | Not run |
+
+#### Purpose
+
+Check that an age immediately below the minimum is rejected.
+
+#### Preconditions
+
+The validation form is open.
+All other fields will use the agreed valid baseline.
+
+#### Test Data
+
+| Field | Value |
+|---|---|
+| Age | `17` |
+| Other fields | Agreed valid baseline |
+
+#### Steps
+
+1. Restore the validation form.
+2. Enter the agreed baseline.
+3. Replace age with `17`.
+4. Submit.
+5. Observe the response.
+
+#### Expected Result
+
+Age 17 is rejected because it is below the minimum age of 18.
+
+#### Actual Result
+
+Not recorded — test has not been executed.
+
+#### Evidence
+
+Not captured.
+
+---
+```
+
+### 10.6 Step 5 — Interpret the Results
+
+Consider this hypothetical implementation mistake:
 
 ```text
 Incorrect:
@@ -850,12 +1201,12 @@ This includes boundary values belonging to adjacent invalid partitions.
 
 ### 11.3 Step 3 — Add Immediate Neighbours
 
-| Boundary value | One below | Boundary | One above |
-|---:|---:|---:|---:|
-| 17 | 16 | 17 | 18 |
-| 18 | 17 | 18 | 19 |
-| 80 | 79 | 80 | 81 |
-| 81 | 80 | 81 | 82 |
+| Boundary value | Values to consider |
+|---:|---|
+| 17 | 16, 17, 18 |
+| 18 | 17, 18, 19 |
+| 80 | 79, 80, 81 |
+| 81 | 80, 81, 82 |
 
 Remove duplicates:
 
@@ -874,15 +1225,26 @@ Remove duplicates:
 
 ### 11.4 Step 4 — Allocate Additional Executions
 
-| Member | Additional age | Type | Expected result |
-|---|---:|---|---|
-| A | 16 | Negative | Reject |
-| B | 19 | Positive | Accept |
-| C | 79 | Positive | Accept |
-| D | 82 | Negative | Reject |
-| E | Independently repeat 16 and 79 | Negative and positive | Reject 16; accept 79 |
+| Member | Additional age |
+|---|---|
+| A | 16 |
+| B | 19 |
+| C | 79 |
+| D | 82 |
+| E | Independently repeat 16 and 79 |
+
+Classify the additional values:
+
+| Age | Test type | Expected result |
+|---:|---|---|
+| 16 | Negative | Reject |
+| 19 | Positive | Accept |
+| 79 | Positive | Accept |
+| 82 | Negative | Reject |
 
 Use the same baseline and execution procedure as Activity 3.
+
+Record each execution in its own test-case block.
 
 ### 11.5 Step 5 — Reference Existing Results
 
@@ -893,19 +1255,47 @@ Identify the original tester, file, and test ID.
 Example from `results/member-b.md`:
 
 ```markdown
-Age 17:
-See AGE-2P-17-A in [Member A’s results](member-a.md).
+### Age 17 — Reused Execution
+
+- Original test: `AGE-2P-17-A`
+- Tester: `member-a`
+- Record: [Member A’s results](member-a.md)
+- Reason for reuse: The baseline, environment, and procedure remain applicable.
 ```
 
 Do not copy another member’s execution and present it as your own.
 
 ### 11.6 Step 6 — Compare Coverage
 
-| Technique | Positive values | Negative values |
-|---|---|---|
-| Equivalence partitioning | 30 | 10, 90 |
-| 2-point boundary testing | 18, 80 | 17, 81 |
-| 3-point boundary testing | 18, 19, 79, 80 | 16, 17, 81, 82 |
+#### Equivalence Partitioning
+
+```text
+Positive:
+30
+
+Negative:
+10, 90
+```
+
+#### 2-Point Boundary Testing
+
+```text
+Positive:
+18, 80
+
+Negative:
+17, 81
+```
+
+#### 3-Point Boundary Testing
+
+```text
+Positive:
+18, 19, 79, 80
+
+Negative:
+16, 17, 81, 82
+```
 
 ### Discussion Checkpoint
 
@@ -952,15 +1342,21 @@ These are prompts, not a required checklist. You may develop a different testing
 
 ### 12.2 Step 2 — Agree on the Team’s Approach
 
-Update the allocation in `team-plan.md`:
+Update `team-plan.md` with a short block for each member:
 
-| Member | Chosen area | What they want to investigate |
-|---|---|---|
-| A | | |
-| B | | |
-| C | | |
-| D | | |
-| E, if applicable | | |
+```markdown
+### Member A — Open-Ended Testing
+
+- Chosen area:
+- Question to investigate:
+
+### Member B — Open-Ended Testing
+
+- Chosen area:
+- Question to investigate:
+```
+
+Repeat for the remaining members.
 
 Members may investigate the same feature if they ask different questions or use different test data.
 
@@ -972,34 +1368,79 @@ In your own file under `manual-testing/exploratory/`, use:
 # Self-Designed Testing — Member A
 
 ## Testing Idea
+
 What do I want to investigate?
 
 ## Reason
+
 Why is this worth testing?
 
 ## Test Basis
+
 What requirement or stated expectation am I checking?
 
+Record any assumptions or unclear requirements.
+
 ## Approach
+
 How will I choose data and perform the tests?
 
-## Test Cases and Results
+## Test Cases
 
-| ID | Type | Steps and data | Expected result | Actual result | Status |
-|---|---|---|---|---|---|
-| OWN-A-01 | | | | | Not run |
+### Test ID: OWN-A-01
 
-## Observations
-What did I learn or notice?
+| Item | Details |
+|---|---|
+| Test type | Positive / Negative / Recovery / Exploratory |
+| Tester | member-a |
+| Status | Not run |
 
-## Evidence
-Add relevant screenshot links.
+#### Purpose
+
+What does this individual test check?
+
+#### Preconditions
+
+What starting state is required?
+
+#### Test Data
+
+List the exact inputs or actions.
+
+#### Steps
+
+1.
+2.
+3.
+
+#### Expected Result
+
+State the expected behaviour and its basis.
+
+If the behaviour is unspecified, record the question being investigated.
+
+#### Actual Result
+
+Not recorded — test has not been executed.
+
+#### Evidence
+
+Not captured.
+
+---
+
+## Overall Observations
+
+What did the tests show?
 
 ## Next Question
+
 What would I investigate next?
 ```
 
-You may adapt the structure. Keep enough detail for another person to understand what you did.
+Duplicate the test-case block for additional tests.
+
+You may adapt the structure, but keep enough detail for another person to understand what you did.
 
 > [!NOTE]
 > If the website does not specify the expected behaviour, state your assumption or record the result as an observation.
@@ -1018,7 +1459,7 @@ Before executing a test:
 
 Choose enough cases to investigate your idea meaningfully within the available time. There is no fixed test count.
 
-The aim is to create useful tests, not the largest table.
+The aim is to create useful tests, not the largest collection.
 
 ### Git Checkpoint — Self-Designed Test Preparation
 
@@ -1103,15 +1544,19 @@ Include:
 
 ```markdown
 ## Guided Testing
+
 What I executed and recorded.
 
 ## Self-Designed Testing
+
 What I chose to investigate.
 
 ## Main Observation
+
 What I learned.
 
 ## Files
+
 Links to my results, exploratory work, and reflection.
 ```
 
@@ -1121,7 +1566,9 @@ You may open the pull request earlier and continue pushing commits to the same b
 
 Your team decides who merges each pull request.
 
-Formal peer approval and reproduction are not required. Before merging, confirm that:
+Formal peer approval and reproduction are not required.
+
+Before merging, confirm that:
 
 - Files are in the intended locations.
 - Another member’s work is not overwritten.
@@ -1130,7 +1577,9 @@ Formal peer approval and reproduction are not required. Before merging, confirm 
 
 Use a merge method that preserves individual commits for this practical.
 
-If a merge conflict appears, resolve it with the affected member. Consult your Tutor if needed. Do not overwrite work blindly.
+If a merge conflict appears, resolve it with the affected member. Consult your Tutor if needed.
+
+Do not overwrite work blindly.
 
 ### 14.3 Verify Integration
 
@@ -1148,39 +1597,96 @@ After merging:
 
 The coordinator updates `summary.md` after members’ contributions are available.
 
+Use short sections and links rather than a wide contribution table.
+
 ### 15.1 Guided Testing Coverage
 
-| Area | Required coverage | Links to results |
-|---|---|---|
-| Login | Positive, negative, and recovery scenarios | |
-| Equivalence partitioning | Below range, valid range, above range | |
-| Input format | Blank and non-numeric observations | |
-| 2-point boundaries | 17, 18, 80, 81 | |
-| 3-point boundaries | 16, 17, 18, 19, 79, 80, 81, 82 | |
+Copy and complete:
 
-### 15.2 Self-Designed Testing
+```markdown
+# Team Summary
 
-| Member | Chosen investigation | Main observation | Link |
-|---|---|---|---|
-| A | | | |
-| B | | | |
-| C | | | |
-| D | | | |
-| E, if applicable | | | |
+## Guided Testing Coverage
 
-### 15.3 Contribution Summary
+### Login Testing
 
-| Member | Guided results | Self-designed tests | Reflection | Pull request |
-|---|---|---|---|---|
-| A | | | | |
-| B | | | | |
-| C | | | | |
-| D | | | | |
-| E, if applicable | | | | |
+Required coverage:
+- Valid credentials.
+- Incorrect password.
+- Missing password.
+- Missing username.
+- Recovery after an invalid attempt.
 
-### 15.4 Team Conclusion
+Results:
+Add links to the relevant member records.
 
-Write a short conclusion:
+### Equivalence Partitioning
+
+Required coverage:
+- Age below the accepted range.
+- Age within the accepted range.
+- Age above the accepted range.
+
+Results:
+Add links to the relevant member records.
+
+### Input-Format Observations
+
+Required observations:
+- Blank age.
+- Non-numeric age input.
+
+Results:
+Add links to the relevant member records.
+
+### 2-Point Boundary Testing
+
+Required values:
+17, 18, 80, 81.
+
+Results:
+Add links to the relevant member records.
+
+### 3-Point Boundary Testing
+
+Required values:
+16, 17, 18, 19, 79, 80, 81, 82.
+
+Results:
+Add links to new executions and identify reused evidence.
+```
+
+### 15.2 Member Contributions
+
+Add a block for each member:
+
+```markdown
+## Member Contributions
+
+### Member A
+
+- Guided results: [View results](results/member-a.md)
+- Self-designed tests: [View tests](exploratory/member-a.md)
+- Reflection: [View reflection](reflections/member-a.md)
+- Chosen investigation:
+- Main observation:
+- Pull request: Add the actual pull-request link.
+
+### Member B
+
+- Guided results: [View results](results/member-b.md)
+- Self-designed tests: [View tests](exploratory/member-b.md)
+- Reflection: [View reflection](reflections/member-b.md)
+- Chosen investigation:
+- Main observation:
+- Pull request: Add the actual pull-request link.
+```
+
+Repeat for the remaining members.
+
+### 15.3 Team Conclusion
+
+Finish with a short conclusion:
 
 - What did the guided activities help you understand?
 - How did members extend the testing in different directions?
@@ -1191,7 +1697,9 @@ Commit and push the summary, then merge it through a pull request.
 > [!TIP]
 > Count a reused execution once, even if it supports multiple techniques.
 >
-> Identify independent repetitions separately. Preserve differing observations rather than silently replacing one result with another.
+> Identify independent repetitions separately.
+>
+> Preserve differing observations rather than silently replacing one result with another.
 
 ***
 
@@ -1201,6 +1709,7 @@ Commit and push the summary, then merge it through a pull request.
 
 - [ ] I used my own working branch.
 - [ ] I completed my assigned guided tests.
+- [ ] I used separate, readable test-case blocks.
 - [ ] I recorded actual results and accurate statuses.
 - [ ] I designed and executed additional tests.
 - [ ] I explained why I chose those tests.
@@ -1239,7 +1748,9 @@ git switch main
 git pull --ff-only
 ```
 
-If Git reports unfinished changes or refuses the update, stop and consult your Tutor. Do not discard work or force the operation.
+If Git reports unfinished changes or refuses the update, stop and consult your Tutor.
+
+Do not discard work or force the operation.
 
 Verify the final repository on GitHub.
 
@@ -1252,19 +1763,82 @@ Verify the final repository on GitHub.
 
 ## 17. Troubleshooting
 
-| Situation | What to do |
-|---|---|
-| Website is unavailable | Record the time and mark affected tests Blocked. Do not claim execution. |
-| Baseline is rejected | Recheck the current requirements and every baseline field. |
-| Browser prevents input | Record the prevention as the actual behaviour. |
-| Expected behaviour is unclear | State the assumption or record a requirement question. |
-| Members observe different results | Compare baseline, starting state, browser, and exact steps. Preserve both observations. |
-| No defects are found | Record passing results and what they demonstrate. |
-| Evidence link fails | Check the relative path, filename, and letter case. |
-| Git reports nothing to commit | Check that files were saved and that you are in the correct repository. |
-| Push is rejected | Read the message and consult your Tutor. Do not force push. |
-| Merge conflict appears | Coordinate with the affected member. Do not overwrite work blindly. |
-| One member is doing all Git work | Redistribute responsibilities. Every member must commit and push their own contribution. |
+### Website Is Unavailable
+
+Record the time and mark affected tests `Blocked`.
+
+Continue designing cases, but do not claim that they were executed.
+
+### Baseline Is Rejected
+
+Recheck the current requirements and every baseline field, especially surname length and country selection.
+
+### Browser Prevents Input
+
+Record the prevention as the actual behaviour.
+
+Do not describe it as a server response.
+
+### Expected Behaviour Is Unclear
+
+State the assumption or record a requirement question.
+
+Do not invent a requirement.
+
+### Members Observe Different Results
+
+Compare:
+
+- Baseline values.
+- Starting state.
+- Browser.
+- Exact steps.
+- Timing of the observation.
+
+Preserve both observations while investigating the difference.
+
+### No Defects Are Found
+
+Record passing results and what they demonstrate.
+
+You do not need to find a defect to complete the practical.
+
+### Evidence Link Does Not Work
+
+Check:
+
+- Relative path.
+- Filename.
+- File extension.
+- Letter case.
+- Whether the image was committed and pushed.
+
+### Git Reports Nothing to Commit
+
+Check that:
+
+- Your files were saved.
+- You are in the correct repository.
+- You edited the intended files.
+- The changes have not already been committed.
+
+### Push Is Rejected
+
+Read the message and consult your Tutor if needed.
+
+Do not force push.
+
+### Merge Conflict Appears
+
+Coordinate with the affected member.
+
+Resolve the conflicting content carefully. Do not overwrite work blindly.
+
+### One Member Is Doing All Git Work
+
+Pause and redistribute responsibilities.
+
+Every member must commit and push their own contribution.
 
 ***
 
@@ -1288,6 +1862,8 @@ Choose an unanswered question from your self-designed testing.
 Apply equivalence partitioning and boundary testing to first-name or surname length.
 
 Check the current requirements and verify character counts before executing.
+
+Remember that negative text lengths are outside the input domain.
 
 ### 18.3 Compare Browsers
 
