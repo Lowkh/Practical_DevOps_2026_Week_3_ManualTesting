@@ -4,16 +4,27 @@
 
 This practical helps you learn manual testing by using existing demonstration websites. You will prepare test cases, interact with the websites, compare expected and actual results, and document your findings.
 
-The focus is on understanding how to select meaningful tests and record evidence—not on writing code or automating tests.
+The focus is on selecting meaningful tests, recording accurate observations, and maintaining a clear record of your work.
+
+> [!IMPORTANT]
+> ## Record Your Practical Using Git
+>
+> You must use **Git** to capture your work throughout this practical.
+>
+> Store your test cases, actual results, screenshots, findings, and reflection in your practical repository. Make meaningful commits as you complete each activity rather than uploading everything only at the end.
+>
+> Your repository should show how your work developed: preparing tests, recording observations, adding evidence, and improving your findings after peer review.
+>
+> Follow your Tutor’s instructions on which repository and branch to use. Commit and push your work at the checkpoints identified in this practical.
 
 | Item | Details |
 |---|---|
 | Duration | 2.5 hours |
 | Mode | Individual testing with paired discussion |
-| Prerequisites | Basic web browsing and document editing |
-| Tools | Web browser, text editor or spreadsheet, screenshot tool |
+| Prerequisites | Basic web browsing, document editing, and Git skills from the earlier practical |
+| Tools | Web browser, text editor, Git, GitHub, and screenshot tool |
 | Websites | SauceDemo and Test Pages |
-| Output | Completed test records, a findings report, and a reflection |
+| Output | A GitHub repository containing test records, evidence, findings, reflection, and meaningful commit history |
 
 > [!NOTE]
 > ## Educational Practice Repository
@@ -26,7 +37,7 @@ The focus is on understanding how to select meaningful tests and record evidence
 >
 > Use only the demonstration websites and normal browser interactions described in this practical. Do not conduct security attacks, generate excessive traffic, or test unrelated production websites.
 
-> [!IMPORTANT]
+> [!WARNING]
 > Public demonstration websites may change or become unavailable. If the current page or its published requirements differ from this practical, record the difference and consult your Tutor.
 >
 > Never claim that a test was executed if you only designed the test case.
@@ -44,18 +55,21 @@ By the end of this practical, you should be able to:
 5. Apply 2-point and 3-point boundary testing.
 6. Decide whether a test passes or fails.
 7. Describe a finding so another person can reproduce it.
+8. Use Git and GitHub to capture testing progress and revisions.
 
 ## 2. Practical Schedule
 
+The time for each activity includes its Git checkpoint.
+
 | Activity | Duration |
 |---|---:|
-| Preparation and key concepts | 15 minutes |
+| Preparation and key concepts | 20 minutes |
 | Activity 1: Positive and negative login testing | 25 minutes |
 | Activity 2: Equivalence partitioning | 25 minutes |
 | Activity 3: 2-point boundary testing | 20 minutes |
 | Activity 4: 3-point boundary testing | 25 minutes |
 | Activity 5: Findings and peer reproduction | 25 minutes |
-| Review and reflection | 15 minutes |
+| Reflection and final repository check | 10 minutes |
 | Total | 150 minutes |
 
 ## 3. Websites Used
@@ -72,7 +86,7 @@ By the end of this practical, you should be able to:
 
 ### 4.1 Manual Testing
 
-Manual testing means that you perform the test steps yourself rather than running an automated test script.
+In this practical, you perform the test steps yourself rather than running automated test scripts.
 
 For each test:
 
@@ -88,6 +102,8 @@ For each test:
 Requirement → Test data → Expected result → Execute
             → Actual result → Compare → Record
 ```
+
+Write the expected result before performing the test. Do not assume that whatever the website does must be correct.
 
 ### 4.2 Positive Testing
 
@@ -125,9 +141,7 @@ The question is:
 
 > Does the application handle invalid information correctly?
 
-### 4.4 Positive and Negative Do Not Mean Pass and Fail
-
-The test type describes the input or scenario. The test status describes whether the actual behaviour matches the expected behaviour.
+### 4.4 Test Type Is Different from Test Status
 
 | Test type | Input | Expected behaviour | Actual behaviour | Status |
 |---|---|---|---|---|
@@ -137,27 +151,64 @@ The test type describes the input or scenario. The test status describes whether
 | Negative | Incorrect password | Reject login | Login allowed | Fail |
 
 > [!TIP]
-> A negative test passes when the application handles the invalid input correctly.
+> A negative test passes when the application handles invalid input correctly.
 >
 > An error message is not automatically evidence of a failed test.
 
-### 4.5 Equivalence Partitioning and Boundary Testing
+### 4.5 Selecting Test Data
 
-| Technique | What it helps you do |
+| Technique | Purpose |
 |---|---|
-| Equivalence partitioning | Divide inputs into groups expected to receive similar treatment |
+| Equivalence partitioning | Divide inputs into groups expected to receive similar treatment and select representatives |
 | 2-point boundary testing | Test adjacent values on opposite sides of a boundary transition |
 | 3-point boundary testing | Test identified boundary values and their immediate neighbours |
 
-These techniques help you choose test data. Each selected case can then be classified as positive or negative.
+These techniques help you choose data. Each selected case can then be classified as positive or negative.
 
 ***
 
-## 5. Prepare Your Working Files
+## 5. Prepare Your Repository and Test Records
 
-### 5.1 Create a Folder
+### 5.1 Open the Correct Repository
 
-In your local working directory or practical repository, create this structure:
+Use the repository and branch specified by your Tutor.
+
+If the repository has not been cloned:
+
+1. Open its GitHub page.
+2. Select `Code`.
+3. Select `HTTPS`.
+4. Copy the repository URL.
+5. Open a terminal where you keep your practical work.
+6. Replace `REPOSITORY_URL` below with the copied URL and run:
+
+```bash
+git clone REPOSITORY_URL
+```
+
+7. Move into the cloned folder, replacing `REPOSITORY_FOLDER` with its actual name:
+
+```bash
+cd REPOSITORY_FOLDER
+```
+
+If the repository is already cloned, open a terminal inside its existing local folder. Do not clone it again.
+
+Check your current state:
+
+```bash
+git status
+git branch --show-current
+```
+
+Confirm that you are in the correct repository and on the branch specified by your Tutor.
+
+> [!NOTE]
+> If you have unfinished changes from another activity or are unsure which branch to use, consult your Tutor. Do not discard existing work.
+
+### 5.2 Create Your Working Files
+
+Inside the repository, create:
 
 ```text
 manual-testing/
@@ -167,18 +218,20 @@ manual-testing/
 └── evidence/
 ```
 
-| File or folder | Purpose |
+| File or folder | What to record |
 |---|---|
-| `test-results.md` | Environment details, test cases, and results |
-| `findings.md` | One reproducible finding |
-| `reflection.md` | Your answers to the reflection questions |
+| `test-results.md` | Environment, test cases, expected results, actual results, and statuses |
+| `findings.md` | One finding and changes made after peer reproduction |
+| `reflection.md` | Reflection answers |
 | `evidence/` | Relevant screenshots |
 
 Git does not track empty folders. The `evidence/` folder will appear in the repository after you add a screenshot or another file.
 
-### 5.2 Record Your Test Environment
+Run the Git commands in this practical from the repository root.
 
-Add the following to `test-results.md`:
+### 5.3 Prepare `test-results.md`
+
+Add:
 
 ```markdown
 # Manual Testing Results
@@ -200,11 +253,15 @@ Add the following to `test-results.md`:
 ## 2-Point Boundary Tests
 
 ## 3-Point Boundary Tests
+
+## Execution Summary
 ```
 
-Use a fictional or class-assigned identifier if the repository is public.
+Use a fictional or class-assigned tester identifier if the repository is public.
 
-### 5.3 Use a Consistent Results Table
+### 5.4 Record Results Consistently
+
+Use a table such as:
 
 ```markdown
 | Test ID | Type | Test data | Expected result | Actual result | Status | Evidence |
@@ -212,18 +269,18 @@ Use a fictional or class-assigned identifier if the repository is public.
 | | Positive / Negative | | | | Not run | |
 ```
 
-Use these statuses:
-
 | Status | Meaning |
 |---|---|
 | Pass | Actual behaviour matches the expected result |
 | Fail | Actual behaviour differs from the expected result |
-| Blocked | Another issue prevents you from completing the test |
-| Not run | You have not executed the test |
+| Blocked | Another issue prevents completion |
+| Not run | The test has not been executed |
 
-### 5.4 Add Screenshot Evidence
+Avoid vague actual results such as “works” or “does not work.” Describe what appeared, what changed, or what was prevented.
 
-Save screenshots using descriptive names:
+### 5.5 Save Screenshot Evidence
+
+Use descriptive filenames:
 
 ```text
 evidence/login-p01.png
@@ -231,13 +288,93 @@ evidence/login-n01.png
 evidence/age-18.png
 ```
 
-From `test-results.md`, link to a screenshot using a relative path:
+From `test-results.md`, link to a screenshot using:
 
 ```markdown
 [View screenshot](evidence/login-n01.png)
 ```
 
-Do not capture unrelated browser tabs, personal account details, or other sensitive information.
+Capture relevant evidence, particularly for failures, unexpected behaviour, and your reported finding. You do not need a screenshot for every passing case.
+
+Check that screenshots do not expose personal information or unrelated browser content.
+
+### 5.6 Use This Git Workflow at Every Checkpoint
+
+#### Step 1 — Save and Review
+
+Save your files, then run:
+
+```bash
+git status
+git diff
+```
+
+Open new files and screenshots directly to review them. Untracked files do not appear in normal `git diff` output, and image contents are not displayed as a text diff.
+
+#### Step 2 — Stage Your Practical Work
+
+```bash
+git add manual-testing/
+```
+
+#### Step 3 — Review the Staged Changes
+
+```bash
+git diff --cached
+git status
+```
+
+Confirm that only intended files are staged.
+
+#### Step 4 — Commit
+
+Use the checkpoint message provided or another accurate description:
+
+```bash
+git commit -m "Prepare manual testing records"
+```
+
+#### Step 5 — Push
+
+If your branch already has an upstream:
+
+```bash
+git push
+```
+
+For the first push of a new branch:
+
+```bash
+git push -u origin YOUR_BRANCH_NAME
+```
+
+Replace `YOUR_BRANCH_NAME` with your actual branch name.
+
+#### Step 6 — Verify on GitHub
+
+Open your repository and select your working branch.
+
+Check that:
+
+1. Your commit appears.
+2. The intended files are present.
+3. Markdown displays correctly.
+4. Evidence links work when evidence has been added.
+
+> [!IMPORTANT]
+> A local commit does not upload your work to GitHub. You must push and verify it online.
+>
+> If a push is rejected, read the message and consult your Tutor if needed. Do not use a force push to bypass the problem.
+
+### Git Checkpoint — Preparation
+
+Commit and push your initial files and environment details.
+
+Suggested message:
+
+```text
+Prepare manual testing records
+```
 
 ***
 
@@ -247,14 +384,14 @@ Time: 25 minutes
 
 Open [SauceDemo](https://www.saucedemo.com/).
 
-Use these demonstration credentials:
+Use:
 
 ```text
 Username: standard_user
 Password: secret_sauce
 ```
 
-For this activity, use these acceptance criteria:
+For this exercise, use these acceptance criteria:
 
 1. Valid demonstration credentials allow access to the product inventory.
 2. Incorrect credentials do not allow access.
@@ -269,29 +406,16 @@ For this activity, use these acceptance criteria:
 | Purpose | Check that valid credentials allow login |
 | Starting state | Logged-out login page |
 
-#### Step 1 — Prepare the Page
+#### Steps
 
-1. Open SauceDemo.
-2. If you are already logged in, use the website’s logout option.
-3. Confirm that the username and password fields are visible.
-4. Clear both fields.
-
-Why: every test should begin from a known state.
-
-#### Step 2 — Enter Valid Data
-
-Enter:
-
-```text
-Username: standard_user
-Password: secret_sauce
-```
-
-#### Step 3 — Perform the Action
-
-Select `Login`.
-
-#### Step 4 — Check the Result
+1. Open the login page.
+2. If already logged in, use the logout option.
+3. Clear both input fields.
+4. Enter `standard_user` as the username.
+5. Enter `secret_sauce` as the password.
+6. Select `Login`.
+7. Check the page reached and whether products are visible.
+8. Record the actual result and status.
 
 Expected result:
 
@@ -299,21 +423,7 @@ Expected result:
 Login succeeds and the product inventory page appears.
 ```
 
-Check that products are visible. Do not assume login succeeded simply because the page changed.
-
-#### Step 5 — Record the Result
-
-Record:
-
-- The page reached.
-- Whether products are visible.
-- Any unexpected message.
-- The test status.
-- Relevant screenshot evidence.
-
-| ID | Type | Expected result | Actual result | Status |
-|---|---|---|---|---|
-| LOGIN-P01 | Positive | Product inventory appears | | Not run |
+Do not assume success merely because the page changed. Check that the expected inventory is available.
 
 ### 6.2 Test LOGIN-N01 — Incorrect Password
 
@@ -321,59 +431,40 @@ Record:
 |---|---|
 | Type | Negative |
 | Purpose | Check that an incorrect password is rejected |
-| Starting state | Logged-out login page |
 
-#### Step 1 — Reset the Page
+#### Steps
 
-1. Log out if necessary.
-2. Return to the login page.
-3. Clear both fields.
-
-#### Step 2 — Enter the Test Data
-
-```text
-Username: standard_user
-Password: wrong_password
-```
-
-Keep the username valid. Change only the password.
-
-Why: changing one input helps isolate the condition being tested.
-
-#### Step 3 — Select Login
-
-Observe the page and any error feedback.
-
-#### Step 4 — Compare the Result
+1. Return to the logged-out login page.
+2. Clear both fields.
+3. Enter `standard_user`.
+4. Enter `wrong_password`.
+5. Select `Login`.
+6. Observe the page and feedback.
+7. Copy the error text accurately.
+8. Record the actual result and status.
 
 Expected result:
 
 ```text
 Login is rejected.
-The inventory page is not reached.
+The inventory is not reached.
 Error feedback is displayed.
 ```
 
-#### Step 5 — Record the Result
+Keep the username valid so that this test isolates the incorrect password.
 
-Copy the error message accurately.
-
-If the application rejects the incorrect password as expected, mark the test Pass.
-
-| ID | Type | Expected result | Actual result | Status |
-|---|---|---|---|---|
-| LOGIN-N01 | Negative | Login rejected with feedback | | Not run |
+If the incorrect password is rejected as expected, mark the test Pass.
 
 ### 6.3 Test LOGIN-N02 — Missing Password
 
-1. Return to the logged-out login page.
+1. Return to the login page.
 2. Clear both fields.
-3. Enter `standard_user` as the username.
+3. Enter `standard_user`.
 4. Leave the password empty.
 5. Select `Login`.
 6. Observe the feedback.
-7. Confirm that the inventory page is not reached.
-8. Record the actual result and status.
+7. Confirm that the inventory is not reached.
+8. Record the result.
 
 Expected result:
 
@@ -389,8 +480,8 @@ The application rejects the attempt and displays validation feedback.
 4. Enter `secret_sauce` as the password.
 5. Select `Login`.
 6. Observe the feedback.
-7. Confirm that the inventory page is not reached.
-8. Record the actual result and status.
+7. Confirm that the inventory is not reached.
+8. Record the result.
 
 Expected result:
 
@@ -409,14 +500,16 @@ This scenario contains a negative attempt followed by a positive attempt.
 5. Keep the username as `standard_user`.
 6. Select `Login` again.
 7. Check whether the inventory appears.
+8. Record both stages of the scenario.
 
 Expected result:
 
 ```text
-After correcting the credentials, the user can log in successfully.
+The invalid attempt is rejected.
+After correcting the password, login succeeds.
 ```
 
-### 6.6 Complete Your Login Test Record
+### 6.6 Complete Your Results
 
 | ID | Type | Scenario | Expected result | Actual result | Status |
 |---|---|---|---|---|---|
@@ -426,13 +519,21 @@ After correcting the credentials, the user can log in successfully.
 | LOGIN-N03 | Negative | Missing username | Reject login | | Not run |
 | LOGIN-R01 | Recovery | Correct invalid credentials | Reject first attempt; accept corrected attempt | | Not run |
 
-### Checkpoint
-
-Discuss with your partner:
+### Discussion Checkpoint
 
 1. Why can a negative test pass?
 2. Why did you change only one credential in each negative test?
-3. What did the recovery scenario check that the other tests did not?
+3. What additional behaviour did the recovery scenario check?
+
+### Git Checkpoint — Login Testing
+
+Save your results and relevant evidence. Review, stage, commit, push, and verify your work.
+
+Suggested message:
+
+```text
+Record positive and negative login test results
+```
 
 ***
 
@@ -440,16 +541,13 @@ Discuss with your partner:
 
 Time: 25 minutes
 
-Open:
-
-- [Test Pages validation form](https://testpages.eviltester.com/apps/client-server-form-validation/)
-- [Validation instructions](https://testpages.eviltester.com/apps/client-server-form-validation/client-server-form-validation-instructions/)
+Open the [validation form](https://testpages.eviltester.com/apps/client-server-form-validation/) and its [instructions](https://testpages.eviltester.com/apps/client-server-form-validation/client-server-form-validation-instructions/).
 
 ### 7.1 Step 1 — Read the Requirements
 
-Check the current website instructions before testing.
+Check the current instructions before testing.
 
-The requirements used in this practical include:
+The requirements used in this practical are:
 
 | Field | Requirement |
 |---|---|
@@ -459,7 +557,7 @@ The requirements used in this practical include:
 | Country | Selected from the available list |
 | Notes | No more than 2,000 characters |
 
-For the core age exercises, use this classroom test model:
+For the core age exercises, use this classroom model:
 
 ```text
 Age is a whole number from 18 to 80 inclusive.
@@ -471,7 +569,7 @@ Therefore:
 18 ≤ age ≤ 80
 ```
 
-Decimal ages are outside the core exercise. If their treatment is not specified, record a requirement question.
+Decimal ages are outside this core model. If their treatment is unspecified, record a requirement question.
 
 ### 7.2 Step 2 — Establish a Valid Baseline
 
@@ -490,26 +588,24 @@ Submit the form.
 Expected result:
 
 ```text
-The form accepts the baseline data and submits successfully.
+The baseline data is accepted and the form submits successfully.
 ```
 
-If it does not:
+If not:
 
 1. Recheck every value.
-2. Read the current validation instructions.
+2. Read the current instructions.
 3. Record any discrepancy.
 4. Consult your Tutor before continuing.
 
 > [!IMPORTANT]
-> Keep every other field valid when testing age.
+> Keep all other fields valid while testing age.
 >
 > Otherwise, a rejection caused by another field could be mistaken for an age-validation result.
 
 ### 7.3 Step 3 — Identify the Partitions
 
-Divide whole-number ages into three groups:
-
-| Partition | Input group | Representative | Type | Expected result |
+| Partition | Whole-number age group | Representative | Type | Expected result |
 |---|---|---:|---|---|
 | EP-01 | Below 18 | 10 | Negative | Reject |
 | EP-02 | 18–80 inclusive | 30 | Positive | Accept |
@@ -522,57 +618,20 @@ Divide whole-number ages into three groups:
                  18                             80
 ```
 
-Why: values within each group are expected to receive similar acceptance or rejection treatment.
+The purpose is to sample each group rather than choose several values from only one group.
 
-### 7.4 Step 4 — Execute the Positive Test
+### 7.4 Step 4 — Execute the Tests
 
-Test ID: `AGE-EP-P01`
-
-1. Restore the form.
-2. Enter the valid baseline.
-3. Set age to `30`.
-4. Submit.
-5. Check whether submission succeeds.
-6. Where displayed, confirm that the submitted age is `30`.
-7. Record the actual result and status.
-
-Expected result:
-
-```text
-Age 30 is accepted.
-```
-
-### 7.5 Step 5 — Execute the Lower Invalid Test
-
-Test ID: `AGE-EP-N01`
+For each representative:
 
 1. Restore the form.
 2. Enter the valid baseline.
-3. Change only age to `10`.
-4. Submit.
-5. Observe any validation feedback.
-6. Confirm that age 10 is not successfully accepted.
-7. Record the actual result and status.
-
-Expected result:
-
-```text
-Age 10 is rejected because it is below the minimum.
-```
-
-### 7.6 Step 6 — Execute the Upper Invalid Test
-
-Test ID: `AGE-EP-N02`
-
-Repeat the same procedure using age `90`.
-
-Expected result:
-
-```text
-Age 90 is rejected because it exceeds the maximum.
-```
-
-### 7.7 Step 7 — Complete Your Results
+3. Change only age to the selected value.
+4. Write the expected result.
+5. Submit.
+6. Observe whether submission succeeds or validation rejects the age.
+7. Where displayed, verify the submitted age.
+8. Record the actual result and status.
 
 | ID | Type | Age | Expected result | Actual result | Status |
 |---|---|---:|---|---|---|
@@ -580,24 +639,39 @@ Age 90 is rejected because it exceeds the maximum.
 | AGE-EP-N01 | Negative | 10 | Reject | | Not run |
 | AGE-EP-N02 | Negative | 90 | Reject | | Not run |
 
-### 7.8 Step 8 — Observe Input-Format Handling
+Here:
 
-Try these inputs separately:
+- Accept means the form successfully submits with the intended age.
+- Reject means successful submission is prevented or a validation error is returned for that age.
 
-| Input | What to observe |
+### 7.5 Step 5 — Observe Input-Format Handling
+
+Try these separately:
+
+| Input | Observation to record |
 |---|---|
-| Empty age | Is the field required? What feedback appears? |
+| Empty age | Is input required? What feedback appears? |
 | `abc` | Can it be entered? Is it prevented, cleared, or rejected? |
 
-Record observations separately from the numeric partitions.
+These are separate observations, not additional numeric ranges.
 
-If the browser prevents `abc` from being entered, record that prevention. Do not claim that the server rejected data that was never submitted.
+If the browser prevents `abc` from being entered, record that prevention. Do not report that the server rejected data that was never submitted.
 
-Where the required behaviour is unclear, record a requirement question rather than inventing an expected result.
+If the expected behaviour is unclear, document a requirement question rather than inventing a rule.
 
-### Checkpoint
+### Discussion Checkpoint
 
-Explain why selecting only `25`, `40`, and `60` would leave important partitions untested.
+Why would testing only `25`, `40`, and `60` leave important partitions untested?
+
+### Git Checkpoint — Equivalence Partitioning
+
+Save your partitions, results, and input-format observations. Review, commit, push, and verify.
+
+Suggested message:
+
+```text
+Record equivalence partitioning tests
+```
 
 ***
 
@@ -605,7 +679,7 @@ Explain why selecting only `25`, `40`, and `60` would leave important partitions
 
 Time: 20 minutes
 
-### 8.1 Step 1 — Locate the Boundary Transitions
+### 8.1 Step 1 — Locate the Transitions
 
 The accepted range is:
 
@@ -620,47 +694,43 @@ The transitions are:
 80 → 81     Valid → Invalid
 ```
 
-### 8.2 Step 2 — Select Two Values per Transition
+### 8.2 Step 2 — Select Adjacent Values
 
-Choose the adjacent values on opposite sides of each transition:
+For 2-point testing, select adjacent values on opposite sides of each transition:
 
 ```text
 Lower transition: 17, 18
 Upper transition: 80, 81
 ```
 
-### 8.3 Step 3 — Classify Each Test
+### 8.3 Step 3 — Classify and Execute
 
-| Age | Position | Type | Expected result |
-|---:|---|---|---|
-| 17 | Immediately below the minimum | Negative | Reject |
-| 18 | Minimum accepted value | Positive | Accept |
-| 80 | Maximum accepted value | Positive | Accept |
-| 81 | Immediately above the maximum | Negative | Reject |
+| ID | Type | Age | Position | Expected result |
+|---|---|---:|---|---|
+| AGE-2P-N01 | Negative | 17 | Immediately below minimum | Reject |
+| AGE-2P-P01 | Positive | 18 | Minimum accepted value | Accept |
+| AGE-2P-P02 | Positive | 80 | Maximum accepted value | Accept |
+| AGE-2P-N02 | Negative | 81 | Immediately above maximum | Reject |
 
-Boundary testing includes both positive and negative cases.
-
-### 8.4 Step 4 — Execute the Tests
-
-For each value:
+For each case:
 
 1. Restore the form.
 2. Enter the valid baseline.
 3. Change only age.
-4. Write the expected result before submitting.
-5. Submit the form.
+4. Confirm the expected result before submitting.
+5. Submit.
 6. Observe the actual behaviour.
-7. Record relevant feedback.
+7. Record feedback and evidence where relevant.
 8. Assign a status.
 
-| ID | Type | Age | Expected result | Actual result | Status |
-|---|---|---:|---|---|---|
-| AGE-2P-N01 | Negative | 17 | Reject | | Not run |
-| AGE-2P-P01 | Positive | 18 | Accept | | Not run |
-| AGE-2P-P02 | Positive | 80 | Accept | | Not run |
-| AGE-2P-N02 | Negative | 81 | Reject | | Not run |
+| ID | Actual result | Status | Evidence |
+|---|---|---|---|
+| AGE-2P-N01 | | Not run | |
+| AGE-2P-P01 | | Not run | |
+| AGE-2P-P02 | | Not run | |
+| AGE-2P-N02 | | Not run | |
 
-### 8.5 Step 5 — Understand What the Tests Can Reveal
+### 8.4 Step 4 — Interpret the Results
 
 Consider this hypothetical implementation mistake:
 
@@ -672,9 +742,7 @@ Required:
 age >= 18
 ```
 
-Age `30` would satisfy both conditions, so it would not reveal this mistake.
-
-Age `18` would reveal the difference.
+Testing `30` would not reveal the difference. Testing `18` would.
 
 | Observation | Interpretation |
 |---|---|
@@ -683,9 +751,19 @@ Age `18` would reveal the difference.
 | Age 18 is rejected | Positive test fails |
 | Age 81 is accepted | Negative test fails |
 
-### Checkpoint
+### Discussion Checkpoint
 
 Explain why testing only `18` and `80` does not complete this 2-point boundary set.
+
+### Git Checkpoint — 2-Point Boundary Testing
+
+Save the four results. Review, commit, push, and verify.
+
+Suggested message:
+
+```text
+Record 2-point boundary test results
+```
 
 ***
 
@@ -697,15 +775,15 @@ Time: 25 minutes
 
 This practical uses the ISTQB CTFL v4.0 interpretation of 3-value boundary value analysis.
 
-For each identified boundary value, test:
+For every identified boundary value, test:
 
 ```text
 One below → Boundary value → One above
 ```
 
-This includes boundary values belonging to the adjacent invalid partitions.
+This includes boundary values belonging to adjacent invalid partitions.
 
-### 9.2 Step 2 — Identify the Boundary Values
+### 9.2 Step 2 — Identify Boundary Values
 
 | Partition | Boundary value or values |
 |---|---|
@@ -719,7 +797,7 @@ The identified boundary values are:
 17, 18, 80, 81
 ```
 
-### 9.3 Step 3 — Add Their Immediate Neighbours
+### 9.3 Step 3 — Add Immediate Neighbours
 
 | Boundary value | One below | Boundary | One above |
 |---:|---:|---:|---:|
@@ -730,7 +808,7 @@ The identified boundary values are:
 
 ### 9.4 Step 4 — Remove Duplicates
 
-The unique test values are:
+The unique values are:
 
 ```text
 16, 17, 18, 19, 79, 80, 81, 82
@@ -743,9 +821,9 @@ The unique test values are:
 > 17, 18, 19, 79, 80, 81
 > ```
 >
-> This practical uses the convention described above, producing eight unique values. Do not mix the two conventions without explaining which one you are applying.
+> This practical uses the convention described above, producing eight unique values. State the convention clearly rather than mixing the two approaches.
 
-### 9.5 Step 5 — Classify and Execute the Tests
+### 9.5 Step 5 — Execute and Record
 
 | ID | Age | Type | Expected result | Actual result | Status |
 |---|---:|---|---|---|---|
@@ -760,9 +838,9 @@ The unique test values are:
 
 Use the same execution procedure as Activity 3.
 
-You may reference existing results for `17`, `18`, `80`, and `81` if the environment, baseline, and procedure are unchanged. Identify the original test IDs.
+You may reference existing results for `17`, `18`, `80`, and `81` if the environment, baseline, and procedure are unchanged. Identify the original test IDs in your record.
 
-Execute the additional values:
+Execute these additional values:
 
 ```text
 16, 19, 79, 82
@@ -776,14 +854,24 @@ Execute the additional values:
 | 2-point boundary testing | 18, 80 | 17, 81 |
 | 3-point boundary testing | 18, 19, 79, 80 | 16, 17, 81, 82 |
 
-### Checkpoint
+### Discussion Checkpoint
 
 Explain:
 
-1. Why age `18` is a positive boundary test.
-2. Why age `17` is a negative boundary test.
-3. What additional values the 3-point set introduces.
-4. Why passing these tests does not prove that every possible input works correctly.
+1. Why `18` is a positive boundary test.
+2. Why `17` is a negative boundary test.
+3. Which additional values the 3-point set introduces.
+4. Why these tests do not prove that every possible input works correctly.
+
+### Git Checkpoint — 3-Point Boundary Testing
+
+Save your results and identify any reused evidence. Review, commit, push, and verify.
+
+Suggested message:
+
+```text
+Record 3-point boundary test results
+```
 
 ***
 
@@ -795,16 +883,14 @@ Time: 25 minutes
 
 Choose one:
 
-- A mismatch between the requirement and actual behaviour.
+- A mismatch between a requirement and actual behaviour.
 - An unclear requirement.
 - A usability observation.
 - A passed positive or negative test.
 
-You do not need to find a defect to complete this practical.
+Do not invent a defect if every test passes.
 
 ### 10.2 Step 2 — Complete `findings.md`
-
-Use this template:
 
 ```markdown
 # Findings Report
@@ -834,7 +920,7 @@ State the rule being checked.
 - Website URL:
 
 ## Preconditions
-State the starting page and required baseline data.
+State the starting page and valid baseline data.
 
 ## Steps to Reproduce
 1.
@@ -846,20 +932,23 @@ State the starting page and required baseline data.
 ## Actual Result
 
 ## Evidence
-[View screenshot](evidence/example.png)
+Add a relative link to relevant evidence, if available.
 
 ## Reproduction
 Observed on __ out of __ attempts.
 
 ## Impact
 Explain why the finding matters.
+
+## Peer Reproduction
+- Outcome:
+- Missing or unclear details:
+- Changes made after feedback:
 ```
 
-Replace the example screenshot path with an actual file, or remove the link if no screenshot was captured.
+### 10.3 Step 3 — Review This Hypothetical Example
 
-### 10.3 Step 3 — Review the Example
-
-The following is hypothetical. It is not a claim that the website contains this defect.
+This example illustrates report structure. It is not a claim that the website contains this defect.
 
 ```text
 Title:
@@ -893,20 +982,31 @@ Impact:
 The form may accept data outside the stated age range.
 ```
 
+### Git Checkpoint — Initial Finding
+
+Before exchanging reports, commit and push your initial finding.
+
+Suggested message:
+
+```text
+Document initial testing finding
+```
+
 ### 10.4 Step 4 — Exchange Reports
 
 Ask your partner to:
 
-1. Follow your report without verbal guidance.
-2. Record whether they observe the same behaviour.
-3. Identify missing or ambiguous details.
-4. Return the report for revision.
+1. Read your report.
+2. Follow the steps without verbal guidance.
+3. Record whether they observe the same behaviour.
+4. Identify missing or ambiguous details.
+5. Return the report for revision.
 
-If the finding is a passed test, your partner should reproduce the pass.
+If your finding is a passed test, your partner should reproduce the pass.
 
 ### 10.5 Step 5 — Improve the Report
 
-Replace vague statements with specific observations.
+Record the reproduction outcome and make necessary improvements.
 
 Avoid:
 
@@ -914,7 +1014,7 @@ Avoid:
 The form does not work.
 ```
 
-Use:
+Use a specific observation:
 
 ```text
 After submitting age 18 with the valid baseline data,
@@ -922,49 +1022,27 @@ the form remains on the input page and displays:
 [exact message].
 ```
 
-***
+If no changes to the steps are needed, still record the peer reproduction outcome.
 
-## 11. Review Your Test Records
+### Git Checkpoint — Peer Review
 
-### 11.1 Completion Checklist
+Commit and push the peer reproduction outcome and any revisions.
 
-- [ ] Environment details are recorded.
-- [ ] Expected results were written before execution.
-- [ ] One positive login test is complete.
-- [ ] Three negative login tests are complete.
-- [ ] One recovery scenario is complete.
-- [ ] Three numeric equivalence partitions are identified.
-- [ ] Equivalence test results are recorded.
-- [ ] Four 2-point boundary results are recorded.
-- [ ] Eight 3-point boundary results are recorded or linked to reused evidence.
-- [ ] Blank and non-numeric input observations are recorded.
-- [ ] One findings report is complete.
-- [ ] A partner has attempted to reproduce the finding.
-- [ ] Reflection answers are complete.
-- [ ] Screenshots contain no sensitive information.
-- [ ] Relative evidence links work.
+Suggested message:
 
-### 11.2 Summarise Execution
+```text
+Record peer reproduction and revise finding
+```
 
-| Status | Number of distinct executed tests |
-|---|---:|
-| Pass | |
-| Fail | |
-| Blocked | |
-
-Record not-run cases separately:
-
-| Status | Number |
-|---|---:|
-| Not run | |
-
-Do not count reused evidence as a new execution. If a test result appears in two technique tables but was executed once, count one execution.
+Your history should now preserve both the initial report and the follow-up work.
 
 ***
 
-## 12. Reflection
+## 11. Reflection and Execution Summary
 
-Add your answers to `reflection.md`:
+### 11.1 Complete `reflection.md`
+
+Write one or two sentences for each question:
 
 ```markdown
 # Reflection
@@ -975,14 +1053,89 @@ Add your answers to `reflection.md`:
 
 ## 3. How did equivalence partitioning help you select test data?
 
-## 4. Why did you keep the other form fields valid when testing age?
+## 4. Why did you keep other fields valid when testing age?
 
 ## 5. What additional values did 3-point boundary testing introduce?
 
 ## 6. What did your partner need clarified to reproduce your finding?
+
+## 7. How does your Git history show the progress of your testing work?
 ```
 
-Write one or two sentences for each answer.
+### 11.2 Summarise Your Tests
+
+Add a summary to `test-results.md`:
+
+| Status | Number of distinct test cases |
+|---|---:|
+| Pass | |
+| Fail | |
+| Blocked | |
+| Not run | |
+| Total | |
+
+Do not count reused evidence as an additional execution. Identify reruns separately if you performed them.
+
+### Git Checkpoint — Completion
+
+Save your reflection and summary. Review, commit, push, and verify.
+
+Suggested message:
+
+```text
+Add testing reflection and execution summary
+```
+
+***
+
+## 12. Final Completion Checklist
+
+### Testing Records
+
+- [ ] Test environment details are recorded.
+- [ ] Expected results were written before execution.
+- [ ] One positive login test is complete.
+- [ ] Three negative login tests are complete.
+- [ ] One recovery scenario is complete.
+- [ ] Three numeric equivalence partitions are identified.
+- [ ] Equivalence test results are recorded.
+- [ ] Four 2-point boundary results are recorded.
+- [ ] Eight 3-point results are recorded or linked to reused evidence.
+- [ ] Blank and non-numeric observations are recorded.
+- [ ] A findings report is complete.
+- [ ] Peer reproduction feedback is recorded.
+- [ ] Reflection answers are complete.
+- [ ] Evidence links work.
+- [ ] Screenshots contain no sensitive information.
+
+### Git and GitHub
+
+- [ ] I used the repository and branch specified by my Tutor.
+- [ ] My practical files are stored inside `manual-testing/`.
+- [ ] I recorded progress throughout the session.
+- [ ] My commit messages describe actual changes.
+- [ ] My initial finding was committed before peer review.
+- [ ] Peer feedback and revisions appear in a later commit.
+- [ ] My reflection and execution summary are committed.
+- [ ] My latest commits are pushed to GitHub.
+- [ ] I verified the files on the correct GitHub branch.
+- [ ] No intended practical work remains uncommitted.
+
+### Final Git Check
+
+Run:
+
+```bash
+git status
+git log --oneline -10
+```
+
+Then verify your latest commit on GitHub.
+
+> [!TIP]
+> Capture genuine progress. Do not create empty commits or split finished work artificially just to increase the commit count.
+>
+> Your history should help another person understand what you completed and what you improved.
 
 ***
 
@@ -990,15 +1143,18 @@ Write one or two sentences for each answer.
 
 | Situation | What to do |
 |---|---|
-| Website is unavailable | Record the time and mark affected tests as Blocked. Continue designing cases without claiming execution. |
-| Website differs from the practical | Read its current instructions and consult your Tutor. |
+| Website is unavailable | Record the time and mark affected tests Blocked. Continue designing cases without claiming execution. |
+| Website differs from this practical | Read the current instructions and consult your Tutor. |
 | Every age test is rejected | Recheck the valid baseline, especially surname length and country selection. |
 | Browser prevents an input | Record the prevention as the actual behaviour. |
 | No result page appears | Check for validation feedback before assuming success. |
 | Expected behaviour is unclear | Record a requirement question rather than inventing a rule. |
 | No defects are found | Document a passed test or requirement question. |
-| Partner gets a different result | Compare starting state, data, browser, and exact steps. |
+| Partner gets a different result | Compare starting state, input data, browser, and exact steps. |
 | Screenshot link does not work | Check the relative path, filename, and letter case. |
+| Git says there is nothing to commit | Check that your files were saved and that you are in the correct repository. |
+| Commit exists locally but not on GitHub | Push and check the correct remote branch. |
+| Push is rejected | Read the message and consult your Tutor if needed. Do not force push. |
 
 ***
 
@@ -1006,14 +1162,16 @@ Write one or two sentences for each answer.
 
 These activities are not required during the 2.5-hour session. Attempt them in your own time if you have the bandwidth.
 
+Capture any extension work using Git as well.
+
 ### 14.1 First-Name Length Testing
 
 Using the requirement that the first name is required and contains fewer than 90 characters:
 
-1. Identify the valid and invalid length partitions.
+1. Identify valid and invalid length partitions.
 2. Select positive and negative representative tests.
 3. Derive the 2-point boundary values.
-4. Derive the 3-point boundary values using this practical’s convention.
+4. Derive the 3-point values using this practical’s convention.
 5. Keep every other field valid.
 6. Explain why negative text lengths are outside the input domain.
 
@@ -1026,25 +1184,25 @@ Using the stated surname range of 11–79 characters:
 3. Select an above-range invalid length.
 4. Prepare a complete 2-point boundary set.
 5. Prepare a complete 3-point boundary set.
-6. Verify your character counts before executing.
+6. Verify character counts before execution.
 
 ### 14.3 Requirement Questions
 
-Investigate whether the published requirements clarify:
+Investigate whether the current requirements clarify:
 
 - Decimal ages.
 - Spaces around an age.
 - First names containing only spaces.
 
-If the required behaviour is unspecified, document the question rather than assigning an unsupported Pass or Fail.
+If behaviour is unspecified, document a question rather than assigning an unsupported Pass or Fail.
 
 ***
 
 ## 15. Final Testing Habit
 
-The goal of **testing** is not simply to make an error message appear. It is to determine whether the application behaves correctly for valid and invalid inputs.
+The goal is not simply to make an error message appear. It is to determine whether the application behaves correctly for valid and invalid inputs, then preserve clear evidence of your work.
 
 ```text
-Read → Select data → Predict → Execute
-     → Observe → Compare → Record → Review
+Read → Design → Execute → Observe → Record
+     → Review changes → Commit → Push → Verify
 ```
